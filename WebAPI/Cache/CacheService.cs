@@ -26,7 +26,7 @@ namespace WebAPI.Cache
         }
         public bool SetData<T>(string key, T value, DateTimeOffset expirationTime)
         {
-            TimeSpan expiryTime = expirationTime.DateTime.Subtract(DateTime.Now);
+            TimeSpan expiryTime = expirationTime.DateTime.Subtract(DateTime.UtcNow);
             var isSet = _db.StringSet(key, JsonConvert.SerializeObject(value), expiryTime);
             return isSet;
         }

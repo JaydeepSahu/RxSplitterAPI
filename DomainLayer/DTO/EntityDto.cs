@@ -4,8 +4,8 @@ using System.Text;
 
 namespace DomainLayer.DTO
 {
-    public class EntityDto
+    public class EntityDto:AuditableEntityDto
     {
-        public int Id { get; set; }
+        public int? Id { get; set; }
     }
 }

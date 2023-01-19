@@ -23,5 +23,13 @@ public partial class GroupMember
 
     public virtual Group Group { get; set; } = null!;
 
+    public virtual ICollection<MemberInvitation> MemberInvitations { get; } = new List<MemberInvitation>();
+
+    public virtual ICollection<SettleUp> SettleUpPayerMembers { get; } = new List<SettleUp>();
+
+    public virtual ICollection<SettleUp> SettleUpRecipientMembers { get; } = new List<SettleUp>();
+
+    public virtual ICollection<Summary> Summaries { get; } = new List<Summary>();
+
     public virtual UserDetail? User { get; set; }
 }

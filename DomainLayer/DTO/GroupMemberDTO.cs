@@ -8,13 +8,15 @@ using System.Threading.Tasks;
 
 namespace DomainLayer.DTO
 {
-    public class GroupMemberDTO:EntityDto
+    public class GroupMemberDTO
     {
+        public int Id { get; set; }
         public string Email { get; set; } = null!;
+        public string Name { get; set; } 
         public int GroupId { get; set; }
-        public void Mapping(Profile profile)
-        {
-            profile.CreateMap<GroupMember, GroupMemberDTO>().ReverseMap();
-        }
+        public Guid UserId { get; set; }
+        public DateTime? UpdatedOn { get; set; }
+        public string Icon { get; set; }
+        
     }
 }

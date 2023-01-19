@@ -12,6 +12,8 @@ namespace DomainLayer.DTO
     {
         public string? GroupName { get; set; }
         public IFormFile? GroupImage { get; set; }
+        public string? GroupImagePath { get; set; }
         public List<GroupMember> lstMember { get; set; }
+        public Guid AddedBy { get; set; }
     }
 }

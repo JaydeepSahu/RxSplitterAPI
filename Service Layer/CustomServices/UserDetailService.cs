@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore.Query.Internal;
 
 namespace Service_Layer.CustomServices
 {
@@ -32,7 +33,7 @@ namespace Service_Layer.CustomServices
             try
             {
                 var user = _context.UserDetails.Where(x => x.Id == Id).FirstOrDefault();
-                user.UpdatedOn=DateTime.Now;
+                user.UpdatedOn=DateTime.UtcNow;
                 user.Password= NewPassword;
                 _context.UserDetails.Update(user);
                 _context.SaveChanges();
@@ -47,7 +48,7 @@ namespace Service_Layer.CustomServices
         {
             try
             {
-                user.UpdatedOn= DateTime.Now;
+                user.UpdatedOn= DateTime.UtcNow;
                 user.IsDeleted = true;
                 _context.UserDetails.Update(user);
                 _context.SaveChanges();
@@ -58,5 +59,27 @@ namespace Service_Layer.CustomServices
                 return false;
             }
         }
+
+        public override bool Update(UserDetail user)
+        {
+            try
+            {
+              
+                var query = this._context.UserDetails.FirstOrDefault(x => x.Id == user.Id);
+                query.UpdatedOn = DateTime.UtcNow;
+                query.Name = user.Name;
+                query.PhoneNumber = user.PhoneNumber;
+                query.Dob = user.Dob;
+                query.ProfileImage = user.ProfileImage;
+                this._context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+        
+
     }
 }

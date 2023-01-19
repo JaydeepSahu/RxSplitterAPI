@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,5 +61,25 @@ namespace DomainLayer.Common
             objt.Clear();
             return UTF8Encoding.UTF8.GetString(resArray);
         }
+
+        //public static bool CheckClaimsIdentity(IEnumerable<Claim> userClaims)
+        //{
+        //    try
+        //    {
+        //        if(userClaims != null )
+        //        {
+        //            if(userClaims.Count > 0)
+        //            return true;
+        //        }
+        //        else
+        //        {
+        //            return false;
+        //        }
+        //    }
+        //    catch (FormatException)
+        //    {
+        //        return false;
+        //    }
+        //}
     }
 }

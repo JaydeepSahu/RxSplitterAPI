@@ -10,10 +10,10 @@ namespace Repository_Layer.IRepository
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll();
+        Task<IEnumerable<T>> GetAll();
         T Get(int Id);
         T GetT(Expression<Func<T, bool>> predicate);
-        IEnumerable<T> GetByExpression(Expression<Func<T, bool>> predicate);
+        Task<List<T>> GetByExpression(Expression<Func<T, bool>> predicate);
         bool Insert(T entity);
         bool Update(T entity);
         bool Delete(T entity);

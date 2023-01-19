@@ -23,6 +23,8 @@ using ConfigurationManager = WebAPI.ConfigurationManager;
 using AutoMapper;
 
 using DomainLayer.Helper;
+using Repository_Layer.IRepository;
+using Repository_Layer.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -39,6 +41,7 @@ builder.Services.AddDbContext<RxSplitterContext>(options => options.UseSqlServer
 
 #region Service Injected
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<ISprocRepository, SprocRepository>();
 builder.Services.AddTransient<ExceptionMiddleware>();
 #endregion
 

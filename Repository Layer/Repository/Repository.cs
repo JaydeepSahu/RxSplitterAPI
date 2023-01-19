@@ -9,6 +9,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections.Immutable;
+using System.Collections;
 
 namespace Repository_Layer.Repository
 {
@@ -52,13 +54,13 @@ namespace Repository_Layer.Repository
             return entities.Where(predicate).FirstOrDefault();
         }
 
-        public IEnumerable<T> GetByExpression(Expression<Func<T, bool>> predicate)
+        public async Task<List<T>> GetByExpression(Expression<Func<T, bool>> predicate)
         {
-            return entities.Where(predicate).ToList();
+            return await entities.Where(predicate).ToListAsync();
         }
-        public IEnumerable<T> GetAll()
+        public async Task<IEnumerable<T>> GetAll()
         {
-            return entities.AsEnumerable();
+            return await entities.ToListAsync();
         }
         public bool Insert(T entity)
         {
@@ -68,7 +70,7 @@ namespace Repository_Layer.Repository
                 {
                     throw new ArgumentNullException("entity");
                 }
-                entities.Add(entity);
+                  entities.Add(entity);
                 return true;
             }
             catch (Exception ex)
@@ -77,7 +79,7 @@ namespace Repository_Layer.Repository
                 return false;
             }
         }
-        public bool Update(T entity)
+        public virtual bool Update(T entity)
         {
             try
             {

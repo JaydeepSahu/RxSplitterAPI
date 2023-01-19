@@ -14,9 +14,10 @@ namespace DomainLayer.Helper
         public ApplicationMapper()
         {
             CreateMap<UserDetailDTO, UserDetail>().ReverseMap();
-           
-            //CreateMap<UserDetailDTO, UserDetail>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name)).ForMember(dest => dest.Id, opt => opt.Ignore());
-            //CreateMap<UserDetail, UserDetailDTO>().ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Name));
+            CreateMap<ExpensesDTO, Expense>().ReverseMap();
+            CreateMap<ExpenseTransactionDTO, ExpenseTransaction>().ReverseMap();
+            CreateMap<ExpensesDTO, SP_GetAllExpensesDetailsAccGroupId>().ReverseMap();
+
         }
     }
 }
